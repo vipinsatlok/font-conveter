@@ -6,7 +6,7 @@ const Header = () => {
     <div className="w-full py-5">
       <ul className="flex justify-between">
         <li>
-          <h4 className="text-2xl font-bold">SA FONT CONVERTER</h4>
+          <h4 className="text-2xl font-semibold">SA Font Conveter</h4>
         </li>
         <div className="flex gap-5 text-lg font-semibold">
           <li>

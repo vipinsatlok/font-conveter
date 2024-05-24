@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,17 +20,17 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={
-          inter.className +
-          "justify-center items-center flex flex-col w-full h-screen"
-        }
+        className={`background ${inter.className}`}
       >
-        <div className="w-[70%]">
+        <div className="w-full lg:w-[70%] flex-1">
           <header className="w-full">
             <Header />
+            <img src="./guru.png" className="w-full" alt="" />
           </header>
-          <div className="w-full">{children}</div>
+          <div className="w-full mt-10">
+            {children}</div>
         </div>
+        <Footer />
       </body>
     </html>
   );

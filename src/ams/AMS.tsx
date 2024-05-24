@@ -1,7 +1,10 @@
-"use client"
+"use client";
 
 import { convertToAMS } from "@/krutidev";
 import React, { ChangeEvent, useState } from "react";
+import { FaRegPaste } from "react-icons/fa6";
+import { FaRegCopy } from "react-icons/fa6";
+import { IoMdRefresh } from "react-icons/io";
 
 const AMSConverter = () => {
   const [result, setResult] = useState("");
@@ -15,16 +18,46 @@ const AMSConverter = () => {
     setResult(result);
   };
 
+  const copy = () => {
+    navigator.clipboard
+      .writeText(result)
+      .then(() => {
+        console.log("Text copied to clipboard");
+      })
+      .catch((err) => {
+        console.error("Failed to copy text: ", err);
+      });
+  };
+
+  const paste = () => {
+    navigator.clipboard
+      .readText()
+      .then((text) => {
+        setText(text);
+        const result = convertToAMS(text);
+        setResult(result);
+      })
+      .catch((err) => {
+        console.error("Failed to read clipboard contents: ", err);
+      });
+  };
+
   return (
     <div className="w-full flex gap-10 mt-5">
       <div className="flex-1">
-        <div>
-          <label
-            htmlFor="text"
-            className="block mb-2 text-lg font-medium text-gray-900 dark:text-white"
-          >
-            Apna Text Yaha Likh Do (Accha Paste Kar Do)
-          </label>
+        <div className="">
+          <div className="flex justify-between">
+            <label
+              htmlFor="text"
+              className="block mb-2 text-lg font-medium text-gray-200 dark:text-white"
+            >
+              Apna Text Yaha Likh Do (Accha Paste Kar Do)
+            </label>
+            <button className="mb-5" onClick={paste}>
+              <FaRegPaste size={25} />
+            </button>
+          </div>
+
           <textarea
             onChange={(e) => converter(e)}
             id="text"
@@ -34,15 +67,23 @@ const AMSConverter = () => {
             placeholder="Ji Ha Yahi Paste Ya Likhna Hai.. Appppka Text"
           ></textarea>
         </div>
+
+        <div className="py-10"></div>
       </div>
+
       <div className="flex-1">
         <div>
-          <label
-            htmlFor="text"
-            className="block mb-2 text-lg font-medium text-gray-900 dark:text-white"
-          >
-            Is Box Me Aapke Text Ka Unicode Aa Jayega
-          </label>
+          <div className="flex justify-between">
+            <label
+              htmlFor="text"
+              className="block mb-2 text-lg font-medium text-gray-200 dark:text-white"
+            >
+              Is Box Me Aapke Text Ka AMS Aa Jayega
+            </label>
+            <button className="mb-5" onClick={copy}>
+              <FaRegCopy size={25} />
+            </button>
+          </div>
           <textarea
             value={result}
             id="text"
