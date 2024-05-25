@@ -5,6 +5,10 @@ import React, { ChangeEvent, useState } from "react";
 import { FaRegPaste } from "react-icons/fa6";
 import { FaRegCopy } from "react-icons/fa6";
 import { IoMdRefresh } from "react-icons/io";
+import localFont from 'next/font/local'
+ 
+// Font files can be colocated inside of `pages`
+const myFont = localFont({ src: './DG2.ttf' })
 
 const AMSConverter = () => {
   const [result, setResult] = useState("");
@@ -88,8 +92,8 @@ const AMSConverter = () => {
             value={result}
             id="text"
             rows={8}
-            className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-            placeholder="Kuch Intjar Aur Fir Maje Se Use Karo....."
+            className={`block ${myFont.className} box p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500`}
+            placeholder="....."
           ></textarea>
         </div>
       </div>
